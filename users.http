@@ -1,0 +1,20 @@
+GET http://localhost:4545/users HTTP/1.1
+
+###
+
+POST http://localhost:4545/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName": "Nicolas"
+}
+
+###
+
+PUT http://localhost:4545/users/159bdf1b-e1f0-4b4b-b567-1a0ccb064cf4 HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName" : "Jane",
+  "lastName": "Dock"
+}
