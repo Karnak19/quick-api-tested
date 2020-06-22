@@ -33,4 +33,12 @@ const User = sequelizeInstance.define("User", {
   },
 });
 
+User.prototype.validPassword = function (password) {
+  if (password === this.password) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 module.exports = User;

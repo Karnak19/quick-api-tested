@@ -3,11 +3,17 @@ const express = require("express");
 const users = express.Router();
 const User = require("../models/User");
 const bodyChecker = require("../middlewares/bodyChecker");
+const authRole = require("../middlewares/authRole");
+
+users.use(authRole("ADMIN"));
 
 users.get("/", async (req, res) => {
   try {
-    const users = await User.findAll();
-
+    const users = await User.findAll({
+      attributes: {
+        exclude: ["password"],
+      },
+    });
     res.status(200).json(users);
   } catch (err) {
     res.status(400).json(err);
