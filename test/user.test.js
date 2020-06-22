@@ -47,7 +47,6 @@ describe("USERS", () => {
           password: "test",
           role: "ADMIN",
         });
-        console.log(res.body);
         res.should.have.status(201);
         res.body.should.be.a("object");
         res.body.should.have.keys([
