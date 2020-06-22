@@ -17,6 +17,9 @@ describe("USERS", () => {
     await User.create({
       firstName: "Jane",
       lastName: "Test",
+      email: "jane@test.com",
+      password: "test",
+      role: "ADMIN",
     });
   });
 
@@ -37,11 +40,14 @@ describe("USERS", () => {
   describe("post one", () => {
     it("should post a new user", async () => {
       try {
-        const res = await chai
-          .request(server)
-          .post("/users")
-          .send({ firstName: "John", lastName: "Doe" });
-
+        const res = await chai.request(server).post("/users").send({
+          firstName: "John",
+          lastName: "Doe",
+          email: "john@doe.com",
+          password: "test",
+          role: "ADMIN",
+        });
+        console.log(res.body);
         res.should.have.status(201);
         res.body.should.be.a("object");
         res.body.should.have.keys([
@@ -49,6 +55,9 @@ describe("USERS", () => {
           "firstName",
           "lastName",
           "createdAt",
+          "email",
+          "role",
+          "password",
           "updatedAt",
         ]);
       } catch (err) {

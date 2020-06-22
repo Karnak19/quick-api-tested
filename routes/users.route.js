@@ -15,12 +15,15 @@ users.get("/", async (req, res) => {
 });
 
 users.post("/", async (req, res) => {
-  const { firstName, lastName } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
 
   try {
     const user = await User.create({
       firstName,
       lastName,
+      email,
+      password,
+      role,
     });
 
     res.status(201).json(user);
@@ -30,7 +33,7 @@ users.post("/", async (req, res) => {
 });
 
 users.put("/:id", async (req, res) => {
-  const { firstName, lastName } = req.body;
+  const { firstName, lastName, email, password, role } = req.body;
   const { id } = req.params;
 
   try {
@@ -38,6 +41,9 @@ users.put("/:id", async (req, res) => {
       {
         firstName,
         lastName,
+        email,
+        password,
+        role,
       },
       {
         where: { id },

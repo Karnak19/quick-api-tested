@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 async function main() {
   try {
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     await sequelize.authenticate();
     console.log("Database succesfully joined");
 
@@ -27,7 +27,7 @@ async function main() {
       console.log(`Server is running on http://localhost:${PORT}`);
     });
   } catch (err) {
-    console.log("Unable to join database", err.message);
+    console.log("Unable to start", err.message);
   }
 }
 
@@ -36,3 +36,4 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 module.exports = app;
+module.exports.secret = "U&T@AffHy3huaJQAJ2!7-=nn%s&VH";
