@@ -2,14 +2,17 @@ require("dotenv").config();
 const express = require("express");
 
 const sequelize = require("./sequelize");
+require("./associations");
 const users = require("./routes/users.route");
 const auth = require("./routes/auth.route");
+const books = require("./routes/books.route");
 
 const app = express();
 
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
+app.use("/books", books);
 app.use("/users", users);
 app.use("/auth", auth);
 

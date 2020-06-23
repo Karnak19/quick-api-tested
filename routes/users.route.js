@@ -1,26 +1,26 @@
 const express = require("express");
 
-const users = express.Router();
+const router = express.Router();
 const User = require("../models/User");
+const Book = require("../models/Book");
 const bodyChecker = require("../middlewares/bodyChecker");
 const authRole = require("../middlewares/authRole");
 
-users.use(authRole("ADMIN"));
-
-users.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const users = await User.findAll({
       attributes: {
         exclude: ["password"],
       },
     });
+
     res.status(200).json(users);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-users.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { firstName, lastName, email, password, role } = req.body;
 
   try {
@@ -38,7 +38,7 @@ users.post("/", async (req, res) => {
   }
 });
 
-users.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   const { firstName, lastName, email, password, role } = req.body;
   const { id } = req.params;
 
@@ -61,4 +61,14 @@ users.put("/:id", async (req, res) => {
   }
 });
 
-module.exports = users;
+router.get("/:id/books", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const books = await Book.findAll({ where: { UserId: id } });
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+module.exports = router;

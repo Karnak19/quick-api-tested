@@ -31,6 +31,15 @@ describe("USERS", () => {
         res.should.have.status(200);
         res.body.should.be.a("array");
         res.body.length.should.be.eql(1);
+        res.body[0].should.have.keys([
+          "id",
+          "firstName",
+          "lastName",
+          "createdAt",
+          "email",
+          "role",
+          "updatedAt",
+        ]);
       } catch (err) {
         throw err;
       }

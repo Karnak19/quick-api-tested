@@ -1,0 +1,13 @@
+GET http://localhost:4545/books HTTP/1.1
+###
+POST http://localhost:4545/books HTTP/1.1
+Content-Type: application/json
+
+{
+  "ISBN10": "2706118857",
+  "author": "Robert-Vincent Joule",
+  "title": "Manipulation à l'usage des honnêtes gens",
+  "genre": "PSYCHOLOGIE",
+  "releaseDate": "march 2014",
+  "UserId": "dcbee9ad-20ed-40e6-821a-67239c1377f2"
+}

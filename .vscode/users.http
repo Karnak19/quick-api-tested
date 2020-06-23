@@ -7,7 +7,11 @@ POST http://localhost:4545/users HTTP/1.1
 Content-Type: application/json
 
 {
-  "firstName": "Nicolas"
+  "firstName": "Jean",
+  "lastName": "Pierre",
+  "email": "nico@gmail.com",
+  "password": "toto",
+  "role": "USER"
 }
 
 ###
@@ -30,3 +34,6 @@ Content-Type: application/json
   "password": "toto"
 }
 
+###
+
+GET http://localhost:4545/users/b467c83e-c2c0-45d7-8793-55e61a9e2e7b/books HTTP/1.1
